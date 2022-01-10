@@ -12,7 +12,6 @@ buttonEl.addEventListener("click", createTaskHandler);
 
 
 //////// Steps to add to DOM using JS///////////
-// 1. create new element
 // 2. style the element
 // 3. add text to the element
 // 4. append element to the DOM
