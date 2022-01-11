@@ -1,14 +1,17 @@
 const buttonEl = document.querySelector("#save-task");
 const tasksToDoEl = document.querySelector("#tasks-to-do");
+const formEl = document.querySelector("#task-form");
 
-const createTaskHandler = function() {
+const createTaskHandler = function(event) {
+    event.preventDefault();
+    
     let listItemEl = document.createElement("li");
     listItemEl.className = "task-item";
     listItemEl.textContent = "This is a new task.";
     tasksToDoEl.appendChild(listItemEl);
 }
 
-buttonEl.addEventListener("click", createTaskHandler);
+formEl.addEventListener("submit", createTaskHandler);
 
 
 //////// Steps to add to DOM using JS///////////
