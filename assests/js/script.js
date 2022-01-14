@@ -58,8 +58,7 @@ const createTaskEl = function(taskDataObj) {
     tasksToDoEl.appendChild(listItemEl);
     taskIdCounter++;
 
-    console.log(taskDataObj);
-    console.log(taskDataObj.status)
+    saveTasks();
 }
 
 const createTaskActions = function(taskId) {
@@ -130,6 +129,7 @@ const deleteTask = function(taskId) {
     }
     // reassign tasks array to be the same as updatedTaskArr
     tasks = updatedTaskArr;
+    saveTasks();
 };
 const editTask = function(taskId) {
     // get task list item element
@@ -159,6 +159,7 @@ const completeEditTask = function(taskName, taskType, taskId) {
             tasks[i].type = taskType;
         }
     };
+    saveTasks();
 
     alert("Task Updated!");
     formEl.removeAttribute("data-task-id");
@@ -170,7 +171,6 @@ const taskStatusChangeHandler = function(event) {
     const taskId = event.target.getAttribute("data-task-id");
     // get the currently selected option's value and convert to lowercase
     const statusValue = event.target.value.toLowerCase();
-    console.log(statusValue)
     // find the parent task item element based on the id
     const taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
 
@@ -187,8 +187,13 @@ const taskStatusChangeHandler = function(event) {
             tasks[i].status = statusValue;
         }
     }
-    console.log(tasks) 
+    saveTasks();
 }
+
+const saveTasks = function() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
 
 formEl.addEventListener("submit", taskFormHandler);
 pageContentEl.addEventListener("click", taskButtonHandler);
