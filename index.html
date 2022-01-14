@@ -12,7 +12,6 @@
     <header>
         <h1 class="page-title">Taskinator</h1>
         <p>Click the button below to add a new task!</p>
-
         <form id="task-form">
             <div class="form-group">
                 <input type="text" name="task-name" placeholder="Enter Task Name">
@@ -32,11 +31,19 @@
         
     </header>
     <!-- Main -->
-    <main class="page-content">
+    <main class="page-content" id="page-content">
         <section class="task-list-wrapper">
             <h2 class="list-title">Tasks To Do</h2>
             <ul class="task-list" id="tasks-to-do">
             </ul>
+        </section>
+        <section class="task-list-wrapper">
+            <h2 class="list-title">Tasks In Progress</h2>
+            <ul class="task-list" id="tasks-in-progress"></ul>
+        </section>
+        <section class="task-list-wrapper">
+            <h2 class="list-title">Tasks Completed</h2>
+            <ul class="task-list" id="tasks-in-progress"></ul>
         </section>
     </main>
     <!-- Footer -->
