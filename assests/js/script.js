@@ -13,7 +13,6 @@ const taskFormHandler = function(event) {
     event.preventDefault();
     const taskNameInput = document.querySelector("input[name='task-name']").value;
     const taskTypeInput = document.querySelector("select[name='task-type']").value;
-
     if (!taskNameInput || !taskTypeInput) {
         alert("You need to fill out the task form!")
         return false;
@@ -30,11 +29,10 @@ const taskFormHandler = function(event) {
             type: taskTypeInput,
             status: "to do"
         };
-
     createTaskEl(taskDataObj);
     }
-    
 } 
+
 const createTaskEl = function(taskDataObj) {
     // Create list item
     const listItemEl = document.createElement("li");
@@ -46,16 +44,26 @@ const createTaskEl = function(taskDataObj) {
     // Give it a class name
     taskInfoEl.className = "task-info";
     //add HTML content to div
-    taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";
+    taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + " " + "'" + taskDataObj.status +"'" + "</span>";
     listItemEl.appendChild(taskInfoEl);
-    
     taskDataObj.id = taskIdCounter;
+    taskInfoEl.id 
     tasks.push(taskDataObj);
     //create buttons in each task item
     const taskActionsEl = createTaskActions(taskIdCounter);
     listItemEl.appendChild(taskActionsEl);
     //add entire list item to list
-    tasksToDoEl.appendChild(listItemEl);
+    // fix selection display here://////////////////
+
+
+    if (taskDataObj.status === "to do") {
+        tasksToDoEl.appendChild(listItemEl);
+    } else if (taskDataObj.status === "in progress") {
+        tasksInProgressEl.appendChild(listItemEl);
+    } else if (taskDataObj.status === "completed") {
+        tasksCompletedEl.appendChild(listItemEl);
+
+    }
     taskIdCounter++;
 
     saveTasks();
